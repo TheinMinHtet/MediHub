@@ -195,7 +195,7 @@ export function Sidebar({ role = 'admin' }: SidebarProps) {
 
       {/* Mobile Bottom Navigation Bar (Visible only on mobile, < md) */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E0E7E1] shadow-lg select-none pb-4 pt-1">
-        <div className="h-16 flex items-center gap-2 px-3 pb-1 overflow-x-auto hide-scrollbar snap-x">
+        <div className={`h-16 flex items-center pb-1 overflow-x-auto hide-scrollbar ${role === 'admin' ? 'gap-2 px-3 justify-start snap-x' : 'justify-around w-full px-1'}`}>
         {navItems.map((item) => {
           const isActive = isItemActive(item.href);
           const Icon = item.icon;
@@ -203,7 +203,7 @@ export function Sidebar({ role = 'admin' }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center justify-center shrink-0 min-w-[72px] py-1 px-1 rounded-xl text-[10px] font-semibold transition-all snap-start ${
+              className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[10px] font-semibold transition-all ${role === 'admin' ? 'shrink-0 min-w-[72px] snap-start' : 'flex-1'} ${
                 isActive
                   ? 'text-[#5A7C65]'
                   : 'text-[#829688] hover:text-[#1C2A21]'
@@ -221,7 +221,7 @@ export function Sidebar({ role = 'admin' }: SidebarProps) {
         <button
           onClick={logout}
           type="button"
-          className="flex flex-col items-center justify-center shrink-0 min-w-[72px] py-1 px-1 text-[10px] font-semibold text-[#829688] hover:text-[#9E3E34] transition-all snap-start"
+          className={`flex flex-col items-center justify-center py-1 px-1 text-[10px] font-semibold text-[#829688] hover:text-[#9E3E34] transition-all ${role === 'admin' ? 'shrink-0 min-w-[72px] snap-start' : 'flex-1'}`}
         >
           <div className="p-1 rounded-lg">
             <LogOut className="w-5 h-5 text-[#829688]" />
